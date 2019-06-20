@@ -93,15 +93,15 @@ L.touchGetPosition = love.touch and love.touch.getPosition
 L.windowGetPosition = love.window and love.window.getPosition
 
 
--- Additional functions
+-- Extras
 
 if love.graphics then
-    -- `L.stacked([arg], func)` calls `func` between `L.push([arg])` and `L.pop()`, always calling `L.pop()` even
-    -- if an error occurs in `func`
+    -- `L.pushed([arg], func)` calls `func` between `love.graphics.push([arg])` and `love.graphics.pop()`,
+    -- always calling `love.graphics.pop()` even if an error occurs in `func`
     function L.pushed(argOrFunc, funcOrNil)
-        L.push(funcOrNil and argOrFunc)
+        love.graphics.push(funcOrNil and argOrFunc)
         local succeeded, err = pcall(funcOrNil or argOrFunc)
-        L.pop()
+        love.graphics.pop()
         if not succeeded then
             error(err, 0)
         end
