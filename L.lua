@@ -5,6 +5,8 @@ local L = setmetatable({}, {
         local r
         if love.graphics and love.graphics[k] then
             r = love.graphics[k]
+        elseif love.timer and love.timer[k] then
+            r = love.timer[k]
         elseif love[k] then
             r = love[k]
         elseif castle and castle[k] then
